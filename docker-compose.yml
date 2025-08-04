@@ -1,0 +1,16 @@
+services:
+  fakesmtp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fakesmtp
+    ports:
+      - "25:25"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    environment:
+      - PYTHONUNBUFFERED=1
